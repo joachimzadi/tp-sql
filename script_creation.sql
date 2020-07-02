@@ -53,3 +53,37 @@ create table if not exists Commande
     constraint pk_commande primary key (idCommande),
     constraint fk_commande_client foreign key (idClient) references Client (idClient)
 );
+
+# =======================================================================
+# BONNES PRATIQUES
+# =======================================================================
+
+create table if not exists Commande
+(
+    idCommande   int unsigned auto_increment,
+    idClient     int unsigned,
+    numero       smallint unsigned,
+    dateCommande date,
+    constraint pk_commande primary key (idCommande)
+);
+
+# Creation de la table Client
+create table if not exists Client
+(
+    idClient int unsigned,
+    nom      varchar(20) not null,
+    email    varchar(50) not null,
+    mdp      varchar(15),
+    sexe     char(1),
+    constraint pk_client primary key (idClient)
+);
+
+alter table Commande
+    add constraint fk_commande_client foreign key (idClient)
+        references Client(idClient);
+
+alter table Client
+    add constraint uq_client_email unique (email);
+
+alter table Client
+    alter sexe set default 'M';
