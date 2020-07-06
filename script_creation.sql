@@ -26,8 +26,8 @@ alter table Client
 alter table Client
     add age int not null;
 
-alter table Client
-    modify ddn YEAR;
+# alter table Client
+#     modify ddn YEAR;
 
 insert into client
 values (1, 'Roxana', 'roxana@dawm.ge', '123456', 'F');
